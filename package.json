@@ -76,7 +76,6 @@
     "edition": "octane"
   },
   "dependencies": {
-    "ember-bootstrap": "^5.0.0-beta.2",
     "webpack": "^5.65.0"
   }
 }

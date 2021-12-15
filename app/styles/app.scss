@@ -1,4 +1,4 @@
-@import "ember-bootstrap/bootstrap";
+@import 'bootstrap';
 
 body {
   background-image: url('/assets/images/background.png');
@@ -12,6 +12,11 @@ body {
   .nav-link {
     color: rgba(255, 255, 255, 1.0);
     text-decoration: none;
+    flex: 0 0 180px;
+  }
+
+  .navbar-nav {
+    flex: 0 0 180px;
   }
 
   .dropdown-menu {
