@@ -23,13 +23,13 @@
 	{{/if}}
 	<div class="container-fluid mt-3">
 		<div class="row nav-item">
-			<a class="nav-link" href="/createAccount">I want to create an account</a>
+			<LinkTo class="nav-link" @route="create-account">I want to create an account</LinkTo>
 		</div>
 		<div class="row nav-item">
-			<a class="nav-link" href="/resetPassword">I forgot my password!</a>
+			<LinkTo class="nav-link" @route="reset-password">I forgot my password!</LinkTo>
 		</div>
 		<div class="row nav-item">
-			<a class="nav-link" href="/codeOfConduct">I want to read the Code of Conduct and Twit-arr Rules!</a>
+			<LinkTo class="nav-link" @route="code-of-conduct">I want to read the Code of Conduct and Twit-arr Rules!</LinkTo>
 		</div>
 	</div>
 </div>

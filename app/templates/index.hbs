@@ -22,10 +22,10 @@
 			<div class="row mb-2">
 				<div class="col">
 					<ul class="list-group">
-						<li class="list-group-item"><a href="/profile">View your User Profile</a></li>
-						<li class="list-group-item"><a href="/blocks">Manage Muted and Blocked Users</a></li>
-						<li class="list-group-item"><a href="/alertwords">Manage Alert and Mute Keywords</a></li>
-						<li class="list-group-item"><a href="/createAltAccount">Create an Alt Account</a></li>
+						<li class="list-group-item"><LinkTo @route="profile">View your User Profile</LinkTo></li>
+						<li class="list-group-item"><LinkTo @route="blocks">Manage Muted and Blocked Users</LinkTo></li>
+						<li class="list-group-item"><LinkTo @route="alert-words">Manage Alert and Mute Keywords</LinkTo></li>
+						<li class="list-group-item"><LinkTo @route="create-alt-account">Create an Alt Account</LinkTo></li>
 					</ul>
 				</div>
 			</div>
@@ -39,8 +39,8 @@
 			</div>
 			<div class="row mb-2">
 				<div class="col">
-					<a class="btn btn-outline-primary" href="/login">Login</a>
-					<a class="btn btn-outline-primary" href="/createAccount">Create Account</a>
+					<LinkTo class="btn btn-outline-primary" @route="login">Login</LinkTo>
+					<LinkTo class="btn btn-outline-primary" @route="create-account">Create Account</LinkTo>
 				</div>
 			</div>
 		{{/if}}

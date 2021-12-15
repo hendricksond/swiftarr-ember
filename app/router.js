@@ -22,4 +22,11 @@ Router.map(function () {
   this.route('forums');
   this.route('seamail');
   this.route('events');
+  this.route('create-account');
+  this.route('reset-password');
+  this.route('code-of-conduct');
+  this.route('profile');
+  this.route('blocks');
+  this.route('alert-words');
+  this.route('create-alt-account');
 });
