@@ -23,7 +23,6 @@ Router.map(function () {
   this.route('create-account');
   this.route('reset-password');
   this.route('code-of-conduct');
-  this.route('profile');
   this.route('blocks');
   this.route('alert-words');
   this.route('create-alt-account');
@@ -35,5 +34,8 @@ Router.map(function () {
     this.route('reg-codes');
     this.route('mods');
     this.route('karaoke-managers');
+  });
+  this.route('profile', function () {
+    this.route('edit');
   });
 });
