@@ -5,6 +5,6 @@ export default class ProfileProfileRoute extends Route {
   @service store;
 
   async model(params) {
-    return this.store.find("user", params.id);
+    return this.store.find('user', params.id);
   }
 }

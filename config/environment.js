@@ -2,7 +2,7 @@
 
 module.exports = function (environment) {
   let ENV = {
-    modulePrefix: 'swiftarr-frontend',
+    modulePrefix: 'swiftarr-ember',
     environment,
     rootURL: '/',
     locationType: 'auto',
@@ -29,6 +29,8 @@ module.exports = function (environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.apiURL = 'https://swiftarr.herokuapp.com';
+    ENV.apiNamespace = 'api/v3';
   }
 
   if (environment === 'test') {

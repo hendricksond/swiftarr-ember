@@ -6,6 +6,6 @@ export default class ProfileIndexRoute extends Route {
   @service session;
 
   async model() {
-    return this.store.find("user", this.session.userID);
+    return this.store.find('user', this.session.userID);
   }
 }

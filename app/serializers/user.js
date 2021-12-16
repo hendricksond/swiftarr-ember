@@ -8,9 +8,9 @@ export default class UserSerializer extends ApplicationSerializer {
     userData.userImage = resourceHash.header.userImage;
 
     let data = {
-      id:            resourceHash.header.userID,
-      type:          modelClass.modelName,
-      attributes:    resourceHash
+      id: resourceHash.header.userID,
+      type: modelClass.modelName,
+      attributes: resourceHash,
     };
     return { data: data };
   }

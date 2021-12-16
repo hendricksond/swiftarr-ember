@@ -1,5 +1,5 @@
-import Application from 'swiftarr-frontend/app';
-import config from 'swiftarr-frontend/config/environment';
+import Application from 'swiftarr-ember/app';
+import config from 'swiftarr-ember/config/environment';
 import * as QUnit from 'qunit';
 import { setApplication } from '@ember/test-helpers';
 import { setup } from 'qunit-dom';
