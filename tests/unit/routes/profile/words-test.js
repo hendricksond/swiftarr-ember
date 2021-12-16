@@ -1,11 +1,11 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 
-module('Unit | Route | create-alt-account', function (hooks) {
+module('Unit | Route | profile/words', function (hooks) {
   setupTest(hooks);
 
   test('it exists', function (assert) {
-    let route = this.owner.lookup('route:create-alt-account');
+    let route = this.owner.lookup('route:profile/words');
     assert.ok(route);
   });
 });

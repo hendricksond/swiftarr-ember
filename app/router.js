@@ -23,9 +23,6 @@ Router.map(function () {
   this.route('create-account');
   this.route('reset-password');
   this.route('code-of-conduct');
-  this.route('blocks');
-  this.route('alert-words');
-  this.route('create-alt-account');
   this.route('admin', function () {
     this.route('announcements');
     this.route('daily-themes');
@@ -37,5 +34,8 @@ Router.map(function () {
   });
   this.route('profile', function () {
     this.route('edit');
+    this.route('words');
+    this.route('create-alt-account');
+    this.route('blocks');
   });
 });
