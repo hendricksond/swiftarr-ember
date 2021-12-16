@@ -4,17 +4,17 @@
       {{#if @model.message}}
         {{@model.message}}
       {{else}}
-        User Profile for: <b>{{@model.header.username}}</b>
+        User Profile for: <b>{{@model.username}}</b>
       {{/if}}
     </div>
   </div>
   <div class="row justify-content-center align-items-center mx-1 mb-3">
     <div class="col col-auto p-1 border">
-      #avatar(profile.header, 200)
+      #avatar(profile, 200)
     </div>
     <div class="col-sm">
-      {{#if @model.header.displayName}}
-        Display Name: <b>{{@model.header.displayName}}</b><br>
+      {{#if @model.displayName}}
+        Display Name: <b>{{@model.displayName}}</b><br>
       {{/if}}
       {{#if @model.realName}}
         Real Name: <b>{{@model.realName}}</b><br>
@@ -36,16 +36,16 @@
   {{#if @model.about}}
     <div class="row mx-1 mb-3 border">
       <div class="col col-auto p-1">
-        <h6><b>About {{@model.header.username}}&#58;</b></h6>
+        <h6><b>About {{@model.username}}&#58;</b></h6>
         {{@model.about}}
       </div>				
     </div>
   {{/if}}
-  {{#if (not-eq @model.header.userID this.session.userID)}}
+  {{#if (not-eq @model.userID this.session.userID)}}
     <form class="ajax" action="#(noteFormAction)" enctype="multipart/form-data" method="POST">
       <div class="row mx-1 pb-2 border">
         <div class="col col-12 p-1">
-          <b>Your private note about @#(profile.header.username) (only visible to you):</b><br>
+          <b>Your private note about @#(profile.username) (only visible to you):</b><br>
           <textarea class="form-control" maxlength="2000" rows="5" name="noteText" id="noteText" placeholder="">#(profile.note)</textarea>
         </div>				
         <div class="col col-12">
@@ -62,14 +62,14 @@
   {{/if}}
   <div class="row mt-2">
     <div class="col btn-group btn-group-sm col-auto mx-1" role="group" aria-label="Profile actions">
-      {{#if (eq @model.header.userID this.session.userID)}}
+      {{#if (eq @model.userID this.session.userID)}}
         <a class="btn btn-sm btn-outline-primary" href="/profile/edit">Edit Profile</a>
       {{else}}
         <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="\#blockModal">Block</button>
         <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="\#muteModal">Mute</button>
-        <a class="btn btn-outline-primary" href="/profile/report/#(profile.header.userID)">Report</a>
+        <a class="btn btn-outline-primary" href="/profile/report/#(profile.userID)">Report</a>
         {{#if this.session.isModerator}}
-          <a class="btn btn-sm btn-outline-primary" href="/moderate/userprofile/#(profile.header.userID)">Mod</a>
+          <a class="btn btn-sm btn-outline-primary" href="/moderate/userprofile/#(profile.userID)">Mod</a>
         {{/if}}
       {{/if}}
     </div>
@@ -79,7 +79,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="blockModalTitle">Block User @#(profile.header.username)?</h5>
+        <h5 class="modal-title" id="blockModalTitle">Block User @#(profile.username)?</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -92,7 +92,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
         <button type="button" class="btn btn-primary px-4" data-action="block" 
-            data-actionpath="/user/#(profile.header.userID)/block" 
+            data-actionpath="/user/#(profile.userID)/block" 
             data-errordiv="blockDialog_errorDisplay">
           Block
           <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
@@ -109,7 +109,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="muteModalTitle">Mute User @#(profile.header.username)?</h5>
+        <h5 class="modal-title" id="muteModalTitle">Mute User @#(profile.username)?</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -121,7 +121,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
         <button type="button" class="btn btn-primary px-4" autocomplete="off" data-action="mute" 
-            data-actionpath="/user/#(profile.header.userID)/mute" 
+            data-actionpath="/user/#(profile.userID)/mute" 
             data-errordiv="muteDialog_errorDisplay">
           Mute
           <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>

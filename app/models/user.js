@@ -1,8 +1,9 @@
 import Model, { attr, belongsTo } from '@ember-data/model';
 
 export default class UserModel extends Model {
-  @belongsTo('user-header') header;
-
+  @attr username;
+  @attr userImage;
+  @attr displayName;
   @attr displayedName;
   @attr about;
   @attr email;
