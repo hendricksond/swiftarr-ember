@@ -33,6 +33,8 @@ Router.map(function () {
     this.route('karaoke-managers');
   });
   this.route('profile', function () {
+    this.route('index', { path: '/' });
+    this.route('profile', { path: '/:id' });
     this.route('edit');
     this.route('words');
     this.route('create-alt-account');

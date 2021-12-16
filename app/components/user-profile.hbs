@@ -1,0 +1,136 @@
+<div class="container-md ms-0 mt-2">
+  <div class="row justify-content-center">
+    <div class="col col-auto">
+      {{#if @model.message}}
+        {{@model.message}}
+      {{else}}
+        User Profile for: <b>{{@model.header.username}}</b>
+      {{/if}}
+    </div>
+  </div>
+  <div class="row justify-content-center align-items-center mx-1 mb-3">
+    <div class="col col-auto p-1 border">
+      #avatar(profile.header, 200)
+    </div>
+    <div class="col-sm">
+      {{#if @model.header.displayName}}
+        Display Name: <b>{{@model.header.displayName}}</b><br>
+      {{/if}}
+      {{#if @model.realName}}
+        Real Name: <b>{{@model.realName}}</b><br>
+      {{/if}}
+      {{#if @model.preferredPronoun}}
+        Pronouns: <b>{{@model.preferredPronoun}}</b><br>
+      {{/if}}
+      {{#if @model.email}}
+        Email: <b>{{@model.email}}</b><br>
+      {{/if}}
+      {{#if @model.homeLocation}}
+        Home Town: <b>{{@model.homeLocation}}</b><br>
+      {{/if}}
+      {{#if @model.roomNumber}}
+        Room #: <b>{{@model.roomNumber}}</b><br>
+      {{/if}}
+    </div>
+  </div>
+  {{#if @model.about}}
+    <div class="row mx-1 mb-3 border">
+      <div class="col col-auto p-1">
+        <h6><b>About {{@model.header.username}}&#58;</b></h6>
+        {{@model.about}}
+      </div>				
+    </div>
+  {{/if}}
+  {{#if (not-eq @model.header.userID this.session.userID)}}
+    <form class="ajax" action="#(noteFormAction)" enctype="multipart/form-data" method="POST">
+      <div class="row mx-1 pb-2 border">
+        <div class="col col-12 p-1">
+          <b>Your private note about @#(profile.header.username) (only visible to you):</b><br>
+          <textarea class="form-control" maxlength="2000" rows="5" name="noteText" id="noteText" placeholder="">#(profile.note)</textarea>
+        </div>				
+        <div class="col col-12">
+          <div class="alert alert-danger mt-3 d-none" role="alert">
+          </div>				
+        </div>				
+        <div class="col col-auto me-auto">
+        </div>
+        <div class="col col-auto">
+          <button type="submit" class="btn btn-primary btn-sm">Save</button>
+        </div>
+      </div>
+    </form>
+  {{/if}}
+  <div class="row mt-2">
+    <div class="col btn-group btn-group-sm col-auto mx-1" role="group" aria-label="Profile actions">
+      {{#if (eq @model.header.userID this.session.userID)}}
+        <a class="btn btn-sm btn-outline-primary" href="/profile/edit">Edit Profile</a>
+      {{else}}
+        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="\#blockModal">Block</button>
+        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="\#muteModal">Mute</button>
+        <a class="btn btn-outline-primary" href="/profile/report/#(profile.header.userID)">Report</a>
+        {{#if this.session.isModerator}}
+          <a class="btn btn-sm btn-outline-primary" href="/moderate/userprofile/#(profile.header.userID)">Mod</a>
+        {{/if}}
+      {{/if}}
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="blockModal" tabindex="-1" aria-labelledby="blockModalTitle" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="blockModalTitle">Block User @#(profile.header.username)?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Blocking a user will hide all that user's content from you, and also hide all your content from them.</p>
+        {{#if this.session.isModerator}}
+          <p>But, since you're a Moderator, you'll still see their content. Blocking <b>does</b> hide your non-Mod
+          alt accounts from this person, and vice-versa.</p>
+        {{/if}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary px-4" data-action="block" 
+            data-actionpath="/user/#(profile.header.userID)/block" 
+            data-errordiv="blockDialog_errorDisplay">
+          Block
+          <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+          <span class="visually-hidden">Loading...</span>
+        </button>
+      </div>
+      <div class="mx-3 pb-1 text-end text-danger error-display d-none" id="blockDialog_errorDisplay">
+        <b>Error attempting to block user:</b> <span class="errortext"></span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="muteModal" tabindex="-1" aria-labelledby="muteModalTitle" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="muteModalTitle">Mute User @#(profile.header.username)?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Muting a user will hide all that user's content from you.</p>
+        {{#if this.session.isModerator}}
+          <p>But, since you're a Moderator, you'll still see their content. I know, I know.</p>
+        {{/if}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary px-4" autocomplete="off" data-action="mute" 
+            data-actionpath="/user/#(profile.header.userID)/mute" 
+            data-errordiv="muteDialog_errorDisplay">
+          Mute
+          <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+          <span class="visually-hidden">Loading...</span>
+        </button>
+      </div>
+      <div class="mx-3 pb-1 text-end text-danger error-display d-none" id="muteDialog_errorDisplay">
+        <b>Error attempting to mute user:</b> <span class="errortext"></span>
+      </div>
+    </div>
+  </div>
+</div>

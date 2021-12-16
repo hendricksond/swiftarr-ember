@@ -17,6 +17,10 @@ export default class SessionService extends Service {
     return this.sessionStorage.get('accessLevel');
   }
 
+  get userID() {
+    return this.sessionStorage.get('userID');
+  }
+
   @computed('sessionStorage.token', 'token')
   get isAuthenticated() {
     return this.token != null;
@@ -45,11 +49,11 @@ export default class SessionService extends Service {
     return ['admin'].includes(this.accessLevel);
   }
 
-  storeSession(token, accessLevel, userId) {
+  storeSession(token, accessLevel, userID) {
     var store = this.sessionStorage;
     store.set('token', token);
     store.set('accessLevel', accessLevel);
-    store.set('userId', userId);
+    store.set('userID', userID);
   }
 
   invalidate() {
