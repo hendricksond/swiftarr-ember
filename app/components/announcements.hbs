@@ -1,6 +1,6 @@
-{{#if @announcements}}
+{{#if @model}}
 	<h4><b>Announcements</b></h4>
-	{{#each announcements as |announcement|}}
+	{{#each @model as |announcement|}}
 		<div class="card mb-2">	
 			<div class="card-header bg-success">
 				<span class="text-white">
