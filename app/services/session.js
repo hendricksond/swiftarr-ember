@@ -13,6 +13,10 @@ export default class SessionService extends Service {
     return this.sessionStorage.get('token');
   }
 
+  get accessLevel() {
+    return this.sessionStorage.get('accessLevel');
+  }
+
   @computed('sessionStorage.token', 'token')
   get isAuthenticated() {
     return this.token != null;
@@ -24,6 +28,21 @@ export default class SessionService extends Service {
       return this.store.queryRecord('currentUser', {});
     }
     return null;
+  }
+
+  @computed('isAuthenticated', 'sessionStorage.accessLevel')
+  get isModerator() {
+    return ['moderator', 'tho', 'admin'].includes(this.accessLevel);
+  }
+
+  @computed('isAuthenticated', 'sessionStorage.accessLevel')
+  get isTHO() {
+    return ['tho', 'admin'].includes(this.accessLevel);
+  }
+
+  @computed('isAuthenticated', 'sessionStorage.accessLevel')
+  get isAdmin() {
+    return ['admin'].includes(this.accessLevel);
   }
 
   storeSession(token, accessLevel, userId) {
