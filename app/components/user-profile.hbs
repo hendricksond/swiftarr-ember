@@ -41,12 +41,12 @@
       </div>				
     </div>
   {{/if}}
-  {{#if (not-eq @model.userID this.session.userID)}}
+  {{#if (not-eq @model.id this.session.userID)}}
     <form class="ajax" action="#(noteFormAction)" enctype="multipart/form-data" method="POST">
       <div class="row mx-1 pb-2 border">
         <div class="col col-12 p-1">
-          <b>Your private note about @#(profile.username) (only visible to you):</b><br>
-          <textarea class="form-control" maxlength="2000" rows="5" name="noteText" id="noteText" placeholder="">#(profile.note)</textarea>
+          <b>Your private note about {{@model.username}} (only visible to you):</b><br>
+          <textarea class="form-control" maxlength="2000" rows="5" name="noteText" id="noteText" placeholder="">{{@model.note}}</textarea>
         </div>				
         <div class="col col-12">
           <div class="alert alert-danger mt-3 d-none" role="alert">
@@ -62,12 +62,12 @@
   {{/if}}
   <div class="row mt-2">
     <div class="col btn-group btn-group-sm col-auto mx-1" role="group" aria-label="Profile actions">
-      {{#if (eq @model.userID this.session.userID)}}
+      {{#if (eq @model.id this.session.userID)}}
         <a class="btn btn-sm btn-outline-primary" href="/profile/edit">Edit Profile</a>
       {{else}}
-        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="\#blockModal">Block</button>
-        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="\#muteModal">Mute</button>
-        <a class="btn btn-outline-primary" href="/profile/report/#(profile.userID)">Report</a>
+        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#blockModal">Block</button>
+        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#muteModal">Mute</button>
+        <LinkTo class="btn btn-outline-primary" @route="profile.report" @model={{@model}}>Report</LinkTo>
         {{#if this.session.isModerator}}
           <a class="btn btn-sm btn-outline-primary" href="/moderate/userprofile/#(profile.userID)">Mod</a>
         {{/if}}
@@ -79,7 +79,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="blockModalTitle">Block User @#(profile.username)?</h5>
+        <h5 class="modal-title" id="blockModalTitle">Block User {{@model.username}}?</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -109,7 +109,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="muteModalTitle">Mute User @#(profile.username)?</h5>
+        <h5 class="modal-title" id="muteModalTitle">Mute User {{@model.username}}?</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">

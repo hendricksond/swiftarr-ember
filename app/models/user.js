@@ -13,4 +13,5 @@ export default class UserModel extends Model {
   @attr realName;
   @attr roomNumber;
   @attr limitAccess;
+  @attr note;
 }

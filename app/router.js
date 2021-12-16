@@ -39,5 +39,6 @@ Router.map(function () {
     this.route('words');
     this.route('create-alt-account');
     this.route('blocks');
+    this.route('report', { path: '/report/:id' });
   });
 });
