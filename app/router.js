@@ -10,11 +10,10 @@ Router.map(function () {
   this.route('fez');
   this.route('boardgames');
   this.route('karaoke');
-  this.route('reports');
   this.route('moderator', function () {
     this.route('log');
+    this.route('reports');
   });
-  this.route('admin');
   this.route('logout');
   this.route('login');
   this.route('tweets');
@@ -28,4 +27,13 @@ Router.map(function () {
   this.route('blocks');
   this.route('alert-words');
   this.route('create-alt-account');
+  this.route('admin', function () {
+    this.route('announcements');
+    this.route('daily-themes');
+    this.route('server-settings');
+    this.route('schedule-upload');
+    this.route('reg-codes');
+    this.route('mods');
+    this.route('karaoke-managers');
+  });
 });

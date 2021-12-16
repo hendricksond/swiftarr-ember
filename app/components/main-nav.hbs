@@ -33,7 +33,7 @@
 				{{#if this.session.isAuthenticated}}
 					{{#if this.session.isModerator}}
             <li class="nav-item">
-              <LinkTo @route="reports" class="nav-link" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Reports</LinkTo>
+              <LinkTo @route="moderator.reports" class="nav-link" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Reports</LinkTo>
             </li>
             <li class="nav-item">
               <LinkTo @route="moderator.log" class="nav-link" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Moderator Log</LinkTo>

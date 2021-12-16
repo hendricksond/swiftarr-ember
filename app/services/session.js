@@ -30,17 +30,17 @@ export default class SessionService extends Service {
     return null;
   }
 
-  @computed('isAuthenticated', 'sessionStorage.accessLevel')
+  @computed('accessLevel', 'isAuthenticated', 'sessionStorage.accessLevel')
   get isModerator() {
     return ['moderator', 'tho', 'admin'].includes(this.accessLevel);
   }
 
-  @computed('isAuthenticated', 'sessionStorage.accessLevel')
+  @computed('accessLevel', 'isAuthenticated', 'sessionStorage.accessLevel')
   get isTHO() {
     return ['tho', 'admin'].includes(this.accessLevel);
   }
 
-  @computed('isAuthenticated', 'sessionStorage.accessLevel')
+  @computed('accessLevel', 'isAuthenticated', 'sessionStorage.accessLevel')
   get isAdmin() {
     return ['admin'].includes(this.accessLevel);
   }
